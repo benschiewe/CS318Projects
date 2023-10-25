@@ -53,15 +53,15 @@ complex& complex::operator-=(const complex& z)
 complex& complex::operator*=(const complex& z)
 {
 	double realPart = r * z.r - i * z.i;
-	double imagPart = r * z.i + z.r * i;
+	double imagPart = r * z.i + i * z.r;
 	r = realPart, i = imagPart;
 	return *this;
 }
 
 complex& complex::operator/=(const complex& z)
 {
-	double realPart = (r * z.r + i * z.i) / (pow(z.r, 2) * pow(z.i, 2));
-	double imagPart = (i * z.r - r * z.i) / (pow(z.r, 2) * pow(z.i, 2));
+	double realPart = (r * z.r + i * z.i) / (pow(z.r, 2) + pow(z.i, 2));
+	double imagPart = (i * z.r - r * z.i) / (pow(z.r, 2) + pow(z.i, 2));
 	r = realPart, i = imagPart;
 	return *this;
 }
