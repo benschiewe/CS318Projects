@@ -184,7 +184,7 @@ complex operator+(const complex& z)
 
 complex operator-(const complex& z)
 {
-	return (complex(z) *= -1);
+	return complex(-z.real(), -z.imag());
 }
 
 bool operator==(const complex& z1, const complex& z2)
