@@ -153,7 +153,7 @@ int main()
 	z9 = C * z3;
 	assertx((z9.real() == (x1 * C)) && (z9.imag() == (y1 * C)), __LINE__);
 	z9 = C / z3;
-	assertx((z9.real() == (C * x1) / (pow(x1, 2) * pow(y1, 2))) && (z9.imag() == (-C * y1) / (pow(x1, 2) * pow(y1, 2))), __LINE__);
+	assertx((z9.real() == (C * x1) / (pow(x1, 2) + pow(y1, 2))) && (z9.imag() == (-C * y1) / (pow(x1, 2) + pow(y1, 2))), __LINE__);
 
 	cout << "\n\nTesting Complex x Complex Operations - Large Numbers";
 

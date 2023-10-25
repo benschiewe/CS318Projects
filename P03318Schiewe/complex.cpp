@@ -137,7 +137,7 @@ complex operator/(const complex& z1, const complex& z2)
 
 complex operator+(const complex& z, const double x)
 {
-	return complex(x + z.real(), z.imag());
+	return complex(z.real() + x, z.imag());
 }
 
 complex operator-(const complex& z, const double x)
@@ -172,14 +172,14 @@ complex operator*(const double x, const complex& z)
 
 complex operator/(const double x, const complex& z)
 {
-	double realPart = (x * z.real()) / (pow(z.real(), 2) * pow(z.imag(), 2));
-	double imagPart = (-x * z.imag()) / (pow(z.real(), 2) * pow(z.imag(), 2));
+	double realPart = (x * z.real()) / (pow(z.real(), 2) + pow(z.imag(), 2));
+	double imagPart = (-x * z.imag()) / (pow(z.real(), 2) + pow(z.imag(), 2));
 	return complex(realPart, imagPart);
 }
 
 complex operator+(const complex& z)
 {
-	return (complex(z) *= 1);
+	return z;
 }
 
 complex operator-(const complex& z)
@@ -189,36 +189,32 @@ complex operator-(const complex& z)
 
 bool operator==(const complex& z1, const complex& z2)
 {
-	return !(z1 != z2);
+	return (z1.real() == z2.real() && z1.imag() == z2.imag());
 }
 
 bool operator!=(const complex& z1, const complex& z2)
 {
-	if (z1.real() != z2.real() || z1.imag() != z2.imag())	return true;
-	else	return false;
+	return (z1.real() != z2.real() || z1.imag() != z2.imag());
 }
 
 std::istream& operator>>(std::istream& is, complex& z)
 {
-	double r, i;
-	char discard;
-	is >> discard;
-	is >> r;
-	is >> discard;
-	is >> i;
-	is >> discard;
-	z = complex(r, i);
+	double realPart, imagPart;
+	char ch;
+	is >> ch >> realPart >> ch >> imagPart >> ch;
+	z = complex(realPart, imagPart);
 	return is;
 }
 
 std::ostream& operator<<(std::ostream& os, const complex& z)
 {
-	return os << "(" << z.real() << ", " << z.imag() << ")";
+	os << "(" << z.real() << "," << z.imag() << ")";
+	return os;
 }
 
 double magnitude(const complex& z)
 {
-	return sqrt(pow(z.real(), 2) + pow(z.imag(), 2));
+	return z.magnitude();
 }
 
 double real(const complex& z)
@@ -248,10 +244,10 @@ complex conj(const complex& z)
 
 double norm(const complex& z)
 {
-	return pow(z.magnitude(), 2);
+	return pow(z.real(), 2) + pow(z.imag(), 2);
 }
 
 double arg(const complex& z)
 {
-	return atan2f(z.imag(), z.real()); //TODO modify return here after figuring out wtf is going on
+	return atan2(z.imag(), z.real());
 }
