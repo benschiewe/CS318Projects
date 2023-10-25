@@ -1,0 +1,85 @@
+*** P02 Bulls and Cows ***
+
+************* New Game *************
+
+Number to Guess: 3659
+
+        Guesses entered must be digits 0-9, 4 digits long, no repitition.
+
+        Enter guess: 9563
+                Guess #1: Bulls 0 Cows 4
+
+        Enter guess: 1111
+                Digits can not be repeated -- try again!
+
+        Enter guess: 12345
+                Guess must be 4 digits -- try again!
+
+        Enter guess: abcd
+                Guess can only contain digits -- try again!
+
+        Enter guess: 3659
+                Guess #2: Bulls 4 Cows 0
+
+        *** YOU WIN ***
+
+Enter Y to play again (anything else to end): f
+
+
+____________________________________________________________________________
+
+
+*** P02 Bulls and Cows ***
+
+************* New Game *************
+
+Number to Guess: 9016
+
+        Guesses entered must be digits 0-9, 4 digits long, no repitition.
+
+        Enter guess: 9016
+                Guess #1: Bulls 4 Cows 0
+
+        *** YOU WIN ***
+
+Enter Y to play again (anything else to end): y
+
+Number to Guess: 3709
+
+        Guesses entered must be digits 0-9, 4 digits long, no repitition.
+
+        Enter guess: 9073
+                Guess #1: Bulls 0 Cows 4
+
+        Enter guess: 9124
+                Guess #2: Bulls 0 Cows 1
+
+        Enter guess: 3907
+                Guess #3: Bulls 2 Cows 2
+
+        Enter guess: 3709
+                Guess #4: Bulls 4 Cows 0
+
+        *** YOU WIN ***
+
+Enter Y to play again (anything else to end): y
+
+Number to Guess: 1296
+
+        Guesses entered must be digits 0-9, 4 digits long, no repitition.
+
+        Enter guess: abcd
+                Guess can only contain digits -- try again!
+
+        Enter guess: 12345
+                Guess must be 4 digits -- try again!
+
+        Enter guess: 6921
+                Guess #1: Bulls 0 Cows 4
+
+        Enter guess: 1296
+                Guess #2: Bulls 4 Cows 0
+
+        *** YOU WIN ***
+
+Enter Y to play again (anything else to end): n

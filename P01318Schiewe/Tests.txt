@@ -1,0 +1,83 @@
+*** Random Walks ***
+
+This program generates a number of random walks.
+
+Enter a number of points for each walk: 4
+
+Enter a number of random walks to generate: 5
+
+
+Walk/Step: 1/1:  Point: 69.75, 37.09 Distance: 79.00
+Walk/Step: 1/2:  Point: 59.18, 82.88 Distance: 126.00
+Walk/Step: 1/3:  Point: -17.32, 106.27 Distance: 206.00
+Walk/Step: 1/4:  Point: -12.81, 80.67 Distance: 232.00
+
+Walk/Step: 2/1:  Point: -56.97, -1.99 Distance: 57.00
+Walk/Step: 2/2:  Point: -101.29, -58.73 Distance: 129.00
+Walk/Step: 2/3:  Point: -103.55, -45.92 Distance: 142.00
+Walk/Step: 2/4:  Point: -63.97, -102.45 Distance: 211.00
+
+Walk/Step: 3/1:  Point: 11.43, 35.19 Distance: 37.00
+Walk/Step: 3/2:  Point: -81.34, 41.68 Distance: 130.00
+Walk/Step: 3/3:  Point: -99.47, 91.48 Distance: 183.00
+Walk/Step: 3/4:  Point: -129.68, 62.30 Distance: 225.00
+
+Walk/Step: 4/1:  Point: 45.84, 76.29 Distance: 89.00
+Walk/Step: 4/2:  Point: 82.41, 42.19 Distance: 139.00
+Walk/Step: 4/3:  Point: 56.77, -47.21 Distance: 232.00
+Walk/Step: 4/4:  Point: 20.72, -38.89 Distance: 269.00
+
+Walk/Step: 5/1:  Point: 48.10, 9.35 Distance: 49.00
+Walk/Step: 5/2:  Point: 47.10, 9.31 Distance: 50.00
+Walk/Step: 5/3:  Point: 57.55, 108.77 Distance: 150.00
+Walk/Step: 5/4:  Point: -28.52, 127.06 Distance: 238.00
+
+Walks Sorted:
+        Point: -63.97, -102.45   Distance: 211.00
+        Point: -129.68, 62.30   Distance: 225.00
+        Point: -12.81, 80.67   Distance: 232.00
+        Point: -28.52, 127.06   Distance: 238.00
+        Point: 20.72, -38.89   Distance: 269.00
+
+Average Distance: 235.00
+
+Shortest Distance/Walk: 211.00
+Median Distance/Walk: 232.00
+Longest Distance/Walk: 269.00
+
+
+_____________________________________________________________________
+
+
+*** Random Walks ***
+
+This program generates a number of random walks.
+
+Enter a number of points for each walk: 6
+
+Enter a number of random walks to generate: 2
+
+
+Walk/Step: 1/1:  Point: 18.63, -74.71 Distance: 77.00
+Walk/Step: 1/2:  Point: 92.10, -33.99 Distance: 161.00
+Walk/Step: 1/3:  Point: 55.24, -30.76 Distance: 198.00
+Walk/Step: 1/4:  Point: 30.39, -123.49 Distance: 294.00
+Walk/Step: 1/5:  Point: 91.82, -66.21 Distance: 378.00
+Walk/Step: 1/6:  Point: 90.42, -63.56 Distance: 381.00
+
+Walk/Step: 2/1:  Point: 10.35, -15.93 Distance: 19.00
+Walk/Step: 2/2:  Point: 8.39, -10.26 Distance: 25.00
+Walk/Step: 2/3:  Point: 20.28, 64.80 Distance: 101.00
+Walk/Step: 2/4:  Point: 13.74, 111.35 Distance: 148.00
+Walk/Step: 2/5:  Point: 50.84, 51.98 Distance: 218.00
+Walk/Step: 2/6:  Point: 52.68, 54.35 Distance: 221.00
+
+Walks Sorted:
+        Point: 52.68, 54.35   Distance: 221.00
+        Point: 90.42, -63.56   Distance: 381.00
+
+Average Distance: 301.00
+
+Shortest Distance/Walk: 221.00
+Median Distance/Walk: 301.00
+Longest Distance/Walk: 381.00
