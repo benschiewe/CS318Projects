@@ -41,14 +41,14 @@ public:
 	//		oldest data if buffer is full.  This function must update
 	//		appropriate instance variables
 	void push_back(T val) noexcept {
-		if (_current == _capacity) {	//If we are trying to write out of bounds...
-			_current = 0;				//Set write position to 0
-			_head = _current + 1;		//Update head to 1 after write position
-		};
-		c[_current] = val;				//Update value stored at current position
-		_tail = _current;				//Update tail (newest element) to current
-		_current++;						//Set write position to next element in arr
+		if (_size == _capacity) _head++;				//If full, we are overwriting so increment head (oldest)
+		else					_size++;				//Else, increment size
+		_tail = _current;								//Tail is updated to the position we are currently writing to	
+		c[_current] = val;								//Write to current position
+		if (_current == _capacity - 1) _current = 0;	//If current position is at the end of the buffer, reset to 0
+		else _current++;								//Else, increment current position by 1
 	}
+
 
 	void pop() {
 		if (_size <= 0) {
@@ -56,8 +56,9 @@ public:
 		}
 		// COMPLETE THE REMAINDER OF THIS FUNCTION
 		else {
-			_current--;
-			_size--;
+			_head++;								//Increment head (oldest element) by 1
+			if (_head == _capacity) _head = 0;		//If head overflows, reset to 0
+			_size--;								//Decrement size by 1
 		}
 	}
 
