@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "P01318Schiewe", "P01318Schi
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "P04318Schiewe", "P04318Schiewe\P04318Schiewe.vcxproj", "{F400A338-4C4D-42FF-BF2C-C9DBBA3EA639}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "P05318Schiewe", "P05318Schiewe\P05318Schiewe.vcxproj", "{308EEC15-442E-4086-A611-7455BF4917BF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -51,6 +53,14 @@ Global
 		{F400A338-4C4D-42FF-BF2C-C9DBBA3EA639}.Release|x64.Build.0 = Release|x64
 		{F400A338-4C4D-42FF-BF2C-C9DBBA3EA639}.Release|x86.ActiveCfg = Release|Win32
 		{F400A338-4C4D-42FF-BF2C-C9DBBA3EA639}.Release|x86.Build.0 = Release|Win32
+		{308EEC15-442E-4086-A611-7455BF4917BF}.Debug|x64.ActiveCfg = Debug|x64
+		{308EEC15-442E-4086-A611-7455BF4917BF}.Debug|x64.Build.0 = Debug|x64
+		{308EEC15-442E-4086-A611-7455BF4917BF}.Debug|x86.ActiveCfg = Debug|Win32
+		{308EEC15-442E-4086-A611-7455BF4917BF}.Debug|x86.Build.0 = Debug|Win32
+		{308EEC15-442E-4086-A611-7455BF4917BF}.Release|x64.ActiveCfg = Release|x64
+		{308EEC15-442E-4086-A611-7455BF4917BF}.Release|x64.Build.0 = Release|x64
+		{308EEC15-442E-4086-A611-7455BF4917BF}.Release|x86.ActiveCfg = Release|Win32
+		{308EEC15-442E-4086-A611-7455BF4917BF}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
