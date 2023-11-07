@@ -28,12 +28,10 @@ public:
 	using value_type = T;
 
 	//COMPLETE CONSTRUCTOR BELOW
-	CircularBuffer() { _head = 0, _tail = 0, _size = 0, _capacity = cap, _current = 0 };
+	CircularBuffer() { _head = 0, _tail = 0, _size = 0, _capacity = cap, _current = 0; }
 
 	//COMPLETE THE FUNCTIONS BELOW USING THE FUNCTION PROTOTYPE GIVEN
 
-	T& head() { return c[_head]; }
-	T& tail() { return c[_tail]; }
 	T const& head() const { return c[_head]; }
 	T const& tail() const { return c[_tail]; }
 
@@ -77,12 +75,13 @@ public:
 
 	// COMPLETE THE OVERLOADED << OPERATOR
 	friend std::ostream& operator<<(std::ostream& os, CircularBuffer& buf) {
-		std::cout << "Buffer Info: head: " << _head << ", tail: " << _tail <<
-			", current: " << _current << ", capacity: " << _capacity << ", size: " << _size << "\n";
-		std::cout << "Container: ";
-		for (T el : c) {
-			std::cout << " " << el;
+		os << "Buffer Info: head: " << buf._head << ", tail: " << buf._tail <<
+			", current: " << buf._current << ", capacity: " << buf._capacity << ", size: " << buf._size << "\n";
+		os << " Container: ";
+		for (T el : buf.c) {
+			os << " " << el;
 		}
+		return os;
 	}
 
 private:
