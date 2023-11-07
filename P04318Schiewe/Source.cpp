@@ -45,7 +45,7 @@ int main() {
 
 /* Some interesting notes about line 32:
    I tried passing "q" by reference to generateBaskets() to prevent an expensive copy op
-   But the language / compiler is smart enough to optimize in either scenario. Very cool
+   but the language / compiler is smart enough to optimize in either scenario. Very cool
    Tested average execution time with numBaskets, numMinutes = 10,000,000. Both take approx. 8750ms
    I assume "q" is assigned to the lvalue returned from generateBaskets()
-   since the local var in the helper function geos out of scope following assignment */
+   since the local var in the helper function goes out of scope following assignment */
