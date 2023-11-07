@@ -19,7 +19,7 @@ using namespace std;
 int main() {
     cout << "\n*************** <int> Circular Buffer Demo ******************\n";
     //  FINISH THIS SECTION
-	cout << "\n\n";
+	cout << "\n";
 	CircularBuffer<int, 5> buff = CircularBuffer<int, 5>();
 
 	cout << "Initial state\n";
@@ -100,7 +100,7 @@ int main() {
 	_______________________________________________________________________________________*/
 
     cout << "\n*************** <string> Circular Buffer Demo ******************\n";
-	cout << "\n\n";
+	cout << "\n";
 
 	CircularBuffer<string, 5> buff2 = CircularBuffer<string, 5>();
 
@@ -111,7 +111,7 @@ int main() {
     //  FINISH THIS SECTION --
     // create a vector of words
     // use back_insert_iterator to fill the buffer
-	vector<string> vec = { "of", "oz", "the", "wonderful", "world" };
+	vector<string> vec = { "trash", "trash", "the", "wonderful", "world", "of", "oz" };
 	back_insert_iterator<CircularBuffer<string, 5>> back_it = back_inserter(buff2);
 
 	copy(vec.begin(), vec.end(), back_it);
@@ -143,7 +143,7 @@ int main() {
 	buff2.pop();
 	cout << "Popping: oz\n";
 	cout << buff2;
-	cout << "\n\n";
+	cout << "\n";
 
 	/* ____________________________________________________________________________________
 
@@ -154,7 +154,7 @@ int main() {
 _______________________________________________________________________________________*/
 
     cout << "\n*************** <Dog> Circular Buffer Demo ******************\n";
-	cout << "\n\n";
+	cout << "\n";
 
 	CircularBuffer<dog, 5> buff3 = CircularBuffer<dog, 5>();
 	buff3.push_back(dog("Guinness", "Wheaten", 9));
@@ -164,8 +164,10 @@ ________________________________________________________________________________
 	buff3.push_back(dog("Floyd", "Beagle", 12));
 
 	cout << buff3;
-	cout << "\n";
-	cout << "dogs Full?: " << buff3.full() << "\n\n";
+	cout << "\n\n";
+	cout << "dogs Full?: ";
+	buff3.full() ? cout << "true" : cout << "false";
+	cout << "\n\n";
 
 	buff3.push_back(dog("Snoopy", "Beagle", 100));
 	cout << buff3;
@@ -180,39 +182,38 @@ ________________________________________________________________________________
 	cout << "\n\n";
 
 	cout << "Popping:";
-	cout << " " << buff3.tail();
+	cout << " " << buff3.head();
 	buff3.pop();
 	cout << "\n\n";
 	cout << buff3;
 	cout << "\n\n";
 
 	cout << "Popping:";
-	cout << " " << buff3.tail();
+	cout << " " << buff3.head();
 	buff3.pop();
 	cout << "\n\n";
 	cout << buff3;
 	cout << "\n\n";
 
 	cout << "Popping:";
-	cout << " " << buff3.tail();
+	cout << " " << buff3.head();
 	buff3.pop();
 	cout << "\n\n";
 	cout << buff3;
 	cout << "\n\n";
 
 	cout << "Popping:";
-	cout << " " << buff3.tail();
+	cout << " " << buff3.head();
 	buff3.pop();
 	cout << "\n\n";
 	cout << buff3;
 	cout << "\n\n";
 
 	cout << "Popping:";
-	cout << " " << buff3.tail();
+	cout << " " << buff3.head();
 	buff3.pop();
 	cout << "\n\n";
 	cout << buff3;
-	cout << "\n\n";
 
     cout << endl;
 }
