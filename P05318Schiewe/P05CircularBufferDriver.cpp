@@ -154,8 +154,65 @@ int main() {
 _______________________________________________________________________________________*/
 
     cout << "\n*************** <Dog> Circular Buffer Demo ******************\n";
+	cout << "\n\n";
 
-    //  FINISH THIS SECTION
+	CircularBuffer<dog, 5> buff3 = CircularBuffer<dog, 5>();
+	buff3.push_back(dog("Guinness", "Wheaten", 9));
+	buff3.push_back(dog("Grimlock", "Lab", 2));
+	buff3.push_back(dog("Optimus", "Bulldog", 5));
+	buff3.push_back(dog("Murphy", "Lab", 14));
+	buff3.push_back(dog("Floyd", "Beagle", 12));
+
+	cout << buff3;
+	cout << "\n";
+	cout << "dogs Full?: " << buff3.full() << "\n\n";
+
+	buff3.push_back(dog("Snoopy", "Beagle", 100));
+	cout << buff3;
+	cout << "\n\n";
+
+	buff3.push_back(dog("Archie", "Brittany", 1));
+	cout << buff3;
+	cout << "\n\n";
+
+	buff3.push_back(dog("Penny", "Beagle", 2));
+	cout << buff3;
+	cout << "\n\n";
+
+	cout << "Popping:";
+	cout << " " << buff3.tail();
+	buff3.pop();
+	cout << "\n\n";
+	cout << buff3;
+	cout << "\n\n";
+
+	cout << "Popping:";
+	cout << " " << buff3.tail();
+	buff3.pop();
+	cout << "\n\n";
+	cout << buff3;
+	cout << "\n\n";
+
+	cout << "Popping:";
+	cout << " " << buff3.tail();
+	buff3.pop();
+	cout << "\n\n";
+	cout << buff3;
+	cout << "\n\n";
+
+	cout << "Popping:";
+	cout << " " << buff3.tail();
+	buff3.pop();
+	cout << "\n\n";
+	cout << buff3;
+	cout << "\n\n";
+
+	cout << "Popping:";
+	cout << " " << buff3.tail();
+	buff3.pop();
+	cout << "\n\n";
+	cout << buff3;
+	cout << "\n\n";
 
     cout << endl;
 }
