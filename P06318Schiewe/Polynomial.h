@@ -124,3 +124,126 @@ ostream& operator<<(ostream& out, const  Polynomial<NumberType>& rhs) {
 }
 
 #endif
+
+template<typename NumberType>
+inline const Polynomial<NumberType>& Polynomial<NumberType>::operator=(const Polynomial<NumberType>& rhs)
+{
+	// TODO: insert return statement here
+}
+
+template<typename NumberType>
+inline const Polynomial<NumberType>& Polynomial<NumberType>::operator=(Polynomial<NumberType>&& rhs)
+{
+	// TODO: insert return statement here
+}
+
+template<typename NumberType>
+inline Polynomial<NumberType> Polynomial<NumberType>::operator+=(const Monomial<NumberType>& m)
+{
+	return Polynomial<NumberType>();
+}
+
+template<typename NumberType>
+inline Polynomial<NumberType> Polynomial<NumberType>::operator+=(const Polynomial<NumberType>& rhs)
+{
+	return Polynomial<NumberType>();
+}
+
+template<typename NumberType>
+inline const Polynomial<NumberType> Polynomial<NumberType>::operator+(const Monomial<NumberType>& m) const
+{
+	return Polynomial<NumberType>();
+}
+
+template<typename NumberType>
+inline const Polynomial<NumberType> Polynomial<NumberType>::operator+(const Polynomial<NumberType>& rhs) const
+{
+	return Polynomial<NumberType>();
+}
+
+template<typename NumberType>
+inline Polynomial<NumberType> Polynomial<NumberType>::operator-=(const Monomial<NumberType>& m)
+{
+	return Polynomial<NumberType>();
+}
+
+template<typename NumberType>
+inline Polynomial<NumberType> Polynomial<NumberType>::operator-=(const Polynomial<NumberType>& rhs)
+{
+	return Polynomial<NumberType>();
+}
+
+template<typename NumberType>
+inline const Polynomial<NumberType> Polynomial<NumberType>::operator-(const Monomial<NumberType>& m) const
+{
+	return Polynomial<NumberType>();
+}
+
+template<typename NumberType>
+inline const Polynomial<NumberType> Polynomial<NumberType>::operator-(const Polynomial<NumberType>& rhs) const
+{
+	return Polynomial<NumberType>();
+}
+
+template<typename NumberType>
+inline Polynomial<NumberType> Polynomial<NumberType>::operator*=(const Monomial<NumberType>& m)
+{
+	return Polynomial<NumberType>();
+}
+
+template<typename NumberType>
+inline Polynomial<NumberType> Polynomial<NumberType>::operator*=(const Polynomial<NumberType>& rhs)
+{
+	return Polynomial<NumberType>();
+}
+
+template<typename NumberType>
+inline const Polynomial<NumberType> Polynomial<NumberType>::operator*(const Monomial<NumberType>& m) const
+{
+	return Polynomial<NumberType>();
+}
+
+template<typename NumberType>
+inline const Polynomial<NumberType> Polynomial<NumberType>::operator*(const Polynomial<NumberType>& rhs) const
+{
+	return Polynomial<NumberType>();
+}
+
+template<typename NumberType>
+inline const NumberType Polynomial<NumberType>::evaluate(NumberType x) const
+{
+	return NumberType();
+}
+
+template<typename NumberType>
+inline bool Polynomial<NumberType>::operator==(const Polynomial<NumberType>& p) const
+{
+	return false;
+}
+
+template<typename NumberType>
+inline bool Polynomial<NumberType>::operator!=(const Polynomial<NumberType>& p) const
+{
+	return false;
+}
+
+template<typename NumberType>
+inline void Polynomial<NumberType>::read(istream& in)
+{
+}
+
+template<typename NumberType>
+inline void Polynomial<NumberType>::print(ostream& out) const
+{
+}
+
+template<typename NumberType>
+inline void Polynomial<NumberType>::insert_in_poly(Polynomial<NumberType>& p, const Monomial<NumberType>& m)
+{
+}
+
+template<typename NumberType>
+inline NumberType Polynomial<NumberType>::power(NumberType x, int n) const
+{
+	return NumberType();
+}
