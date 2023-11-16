@@ -32,6 +32,12 @@ private:
 	int	expo;
 };
 
+template <typename NumT>
+std::ostream& operator<<(std::ostream& out, const Monomial<NumT>& m) {
+	out << "MONOMIAL: " << m.coefficient() << " " << m.degree();
+	return out;
+}
+
 //////////////////////////////////////////////////////Polynomial Class
 template <typename NumberType>
 class Polynomial
@@ -149,55 +155,90 @@ inline const Polynomial<NumberType>& Polynomial<NumberType>::operator=(Polynomia
 template<typename NumberType>
 inline Polynomial<NumberType> Polynomial<NumberType>::operator+=(const Monomial<NumberType>& m)
 {
-	
+	for (auto it = term_list.begin(); it != term_list.end(); it++)
+	{
+		if (it->degree() == m.degree())
+		{
+			it->assign_coefficient(it->coefficient() + m.coefficient());
+			return *this;
+		}
+	}
+	insert_in_poly(*this, m);
+	return *this;
 }
 
 template<typename NumberType>
 inline Polynomial<NumberType> Polynomial<NumberType>::operator+=(const Polynomial<NumberType>& rhs)
 {
-	
+	for (auto it = rhs.term_list.begin(); it != rhs.term_list.end(); it++)
+	{
+		*this += *it;
+	}
+	return *this;
 }
 
 template<typename NumberType>
 inline const Polynomial<NumberType> Polynomial<NumberType>::operator+(const Monomial<NumberType>& m) const
 {
-	
+	auto newPoly = *this;
+	newPoly += m;
+	return newPoly;
 }
 
 template<typename NumberType>
 inline const Polynomial<NumberType> Polynomial<NumberType>::operator+(const Polynomial<NumberType>& rhs) const
 {
-	
+	auto newPoly = *this;
+	newPoly += rhs;
+	return newPoly;
 }
 
 template<typename NumberType>
 inline Polynomial<NumberType> Polynomial<NumberType>::operator-=(const Monomial<NumberType>& m)
 {
-	
+	for (auto it = term_list.begin(); it != term_list.end(); it++)
+	{
+		if (it->degree() == m.degree())
+		{
+			it->assign_coefficient(it->coefficient() - m.coefficient());
+			return *this;
+		}
+	}
+	insert_in_poly(*this, m);
+	return *this;
 }
 
 template<typename NumberType>
 inline Polynomial<NumberType> Polynomial<NumberType>::operator-=(const Polynomial<NumberType>& rhs)
 {
-	
+	for (auto it = rhs.term_list.begin(); it != rhs.term_list.end(); it++)
+	{
+		*this -= *it;
+	}
+	return *this;
 }
 
 
 template<typename NumberType>
 inline const Polynomial<NumberType> Polynomial<NumberType>::operator-(const Monomial<NumberType>& m) const
 {
-	
+	auto newPoly = *this;
+	newPoly -= m;
+	return newPoly;
 }
 
 template<typename NumberType>
 inline const Polynomial<NumberType> Polynomial<NumberType>::operator-(const Polynomial<NumberType>& rhs) const
 {
-	
+	auto newPoly = *this;
+	newPoly -= rhs;
+	return newPoly;
 }
 
 template<typename NumberType>
 inline Polynomial<NumberType> Polynomial<NumberType>::operator*=(const Monomial<NumberType>& m)
 {
+	highest_degree += m.degree();
 	for (auto it = term_list.begin(); it != term_list.end(); it++)
 	{
 		it->assign_coefficient(it->coefficient() * m.coefficient());
@@ -209,14 +250,22 @@ inline Polynomial<NumberType> Polynomial<NumberType>::operator*=(const Monomial<
 template<typename NumberType>
 inline Polynomial<NumberType> Polynomial<NumberType>::operator*=(const Polynomial<NumberType>& rhs)
 {
-	for (auto it = term_list.begin(); it != term_list.end(); it++)
+	/*std::cout << "In operator*=() - printing this\n";
+	for (auto el : this->term_list)
+		std::cout << el << "\n";
+	std::cout << "In operator*=() - printing rhs\n";
+	for (auto el : rhs.term_list)
+		std::cout << el << "\n";*/
+
+
+	highest_degree += rhs.highest_degree;
+	
+	for (auto it = rhs.term_list.begin(); it != rhs.term_list.end(); it++)
 	{
-		for (auto itRhs = rhs.term_list.begin(); itRhs != rhs.term_list.end(); itRhs++)
-		{
-			it->assign_coefficient(it->coefficient() * itRhs->coefficient());
-			it->assign_degree(it->degree() + itRhs->degree());
-		}
+		*this *= *it;
 	}
+
+	term_list.sort([](const Monomial<NumberType>& a, const Monomial<NumberType>& b) {return a.degree() > b.degree(); });
 	return *this;
 }
 
@@ -262,7 +311,6 @@ inline bool Polynomial<NumberType>::operator!=(const Polynomial<NumberType>& p) 
 template<typename NumberType>
 inline void Polynomial<NumberType>::read(std::istream& in)
 {
-	const std::streamsize MAX_SIZE = 256;
 	int coeff, degree;
 	std::size_t pos, pos2;
 
@@ -282,23 +330,81 @@ inline void Polynomial<NumberType>::read(std::istream& in)
 }
 
 template<typename NumberType>
-inline void Polynomial<NumberType>::print(std::ostream& out) const
-{
-	auto it = term_list.begin();
-	for (it; it != --(--term_list.end()); it++)
+inline void Polynomial<NumberType>::print(std::ostream& out) const				//Absolutely disgusting, but it works
+{																				//Seriously, what the fuck
+	NumberType degree, coefficient = 1;
+
+	for (auto it = term_list.begin(); it != term_list.end(); it++)
 	{
-		out << it->coefficient() << "x^" << it->degree() << " + ";
+		if (it->coefficient() == 0) continue;
+
+
+		if (it != term_list.begin())		//If we aren't at the start... check sign of the 
+		{
+			if (it->coefficient() > 0)
+				out << " + ";
+			else
+				out << " - ";
+		}
+
+		degree = it->degree();
+		coefficient = it->coefficient();
+
+
+		if (coefficient < 0)
+		{
+			coefficient = abs(coefficient);
+			if (it == term_list.begin()) out << "-";
+		}
+
+		if (degree == 0)
+			out << coefficient;
+		else if (degree == 1 && coefficient == 1)
+			out << "x";
+		else if (degree == 1)
+			out << coefficient << "x";
+		else if (coefficient == 1)
+			out << "x^" << degree;
+		else
+			out << coefficient << "x^" << degree;
 	}
-	out << it->coefficient() << "x^" << it->degree() << "\n";
 }
 
 template<typename NumberType>
 inline void Polynomial<NumberType>::insert_in_poly(Polynomial<NumberType>& p, const Monomial<NumberType>& m)
 {
-	auto it = p.term_list.begin();
-	while (it->degree() > m.degree())
-		it++;
-	term_list.insert(it, m);
+	number_of_terms++;
+	auto it = term_list.begin();
+
+	if (m.degree() == 0 && m.coefficient() == 0)
+		return;
+
+	if (it->degree() == 0 && it->coefficient() == 0)
+		it = term_list.erase(it);
+
+	if (m.degree() > gethighestdegree())
+	{
+		term_list.push_front(m);
+		highest_degree = m.degree();
+		return;
+	}
+
+	for (it; it != term_list.end(); it++)
+	{
+		if (m.degree() == it->degree())
+		{
+			it->assign_coefficient(it->coefficient() + m.coefficient());
+			return;
+		}
+		else if (m.degree() < it->degree())
+			if (m.degree() > std::next(it)->degree())
+				if (std::next(it) != term_list.end())
+				{
+					term_list.insert(std::next(it), m);
+					return;
+				}
+	}
+	term_list.push_back(m);
 }
 
 template<typename NumberType>
