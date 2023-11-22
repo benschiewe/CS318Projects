@@ -149,18 +149,6 @@ inline const Polynomial<NumberType>& Polynomial<NumberType>::operator=(Polynomia
 template<typename NumberType>
 inline Polynomial<NumberType> Polynomial<NumberType>::operator+=(const Monomial<NumberType>& m)
 {
-	if (m.degree() > gethighestdegree())
-	{
-		highest_degree = m.degree();
-	}
-	for (auto it = term_list.begin(); it != term_list.end(); it++)
-	{
-		if (it->degree() == m.degree())
-		{
-			it->assign_coefficient(it->coefficient() + m.coefficient());
-			return *this;
-		}
-	}
 	insert_in_poly(*this, m);
 	return *this;
 }
@@ -194,20 +182,7 @@ inline const Polynomial<NumberType> Polynomial<NumberType>::operator+(const Poly
 template<typename NumberType>
 inline Polynomial<NumberType> Polynomial<NumberType>::operator-=(const Monomial<NumberType>& m)
 {
-	if (m.degree() > gethighestdegree())
-	{
-		highest_degree = m.degree();
-	}
-
-	for (auto it = term_list.begin(); it != term_list.end(); it++)
-	{
-		if (it->degree() == m.degree())
-		{
-			it->assign_coefficient(it->coefficient() - m.coefficient());
-			return *this;
-		}
-	}
-	insert_in_poly(*this, m);
+	insert_in_poly(*this, Monomial(-m.coefficient(), -m.degree()));
 	return *this;
 }
 
@@ -291,7 +266,7 @@ inline const NumberType Polynomial<NumberType>::evaluate(NumberType x) const
 template<typename NumberType>
 inline bool Polynomial<NumberType>::operator==(const Polynomial<NumberType>& p) const
 {
-	return this->term_list == p.term_list;		//Overloaded in list class - first compares size, then each element
+	return this->term_list == p.term_list;								//Overloaded in list class - first compares size, then each element
 }
 
 template<typename NumberType>
@@ -303,27 +278,27 @@ inline bool Polynomial<NumberType>::operator!=(const Polynomial<NumberType>& p) 
 template<typename NumberType>
 inline void Polynomial<NumberType>::read(std::istream& in)
 {
-	int coeff, degree;
+	int coeff = 1, degree = 1;
 	std::size_t pos, pos2;
 
 	std::string s;
 	std::getline(in, s);
 
-	while (true)
+	while (true)														//Clearly the right way to write a loop
 	{
-		pos = s.find(" ");
+		pos = s.find(" ");												//Find 1st and 2nd spaces, store them in size_t vars
 		pos2 = s.find(" ", pos + 1);
-		coeff = std::stoi(s.substr(0, pos));
-		if (coeff == 0) return;
-		degree = std::stoi(s.substr(pos + 1, pos2));
-		insert_in_poly(*this, Monomial<NumberType>(coeff, degree));
-		s.erase(0, pos2 + 1);
+		coeff = std::stoi(s.substr(0, pos));							//Substring containing first integer
+		if (coeff == 0) return;											//If we find coefficient of 0, return and break "infinite" loop
+		degree = std::stoi(s.substr(pos + 1, pos2));					//Second integer
+		insert_in_poly(*this, Monomial<NumberType>(coeff, degree));		//Create a Monomial, insert into Polynomial
+		s.erase(0, pos2 + 1);											//Erase the portion of string we just looked at
 	}
 }
 
 template<typename NumberType>
-inline void Polynomial<NumberType>::print(std::ostream& out) const				//Absolutely disgusting, but it works
-{																				//Seriously, what the fuck
+inline void Polynomial<NumberType>::print(std::ostream& out) const		//Absolutely disgusting, but it works
+{																		//Seriously, what the fuck
 	NumberType degree, coefficient = 1;
 
 	for (auto it = term_list.begin(); it != term_list.end(); it++)
@@ -331,7 +306,7 @@ inline void Polynomial<NumberType>::print(std::ostream& out) const				//Absolute
 		if (it->coefficient() == 0) continue;
 
 
-		if (it != term_list.begin())		//If we aren't at the start... check sign of the 
+		if (it != term_list.begin())									//If we aren't on term #1... check sign of the monomial to see if we need to print + or -
 		{
 			if (it->coefficient() > 0)
 				out << " + ";
@@ -339,25 +314,25 @@ inline void Polynomial<NumberType>::print(std::ostream& out) const				//Absolute
 				out << " - ";
 		}
 
-		degree = it->degree();
+		degree = it->degree();											//Local vars for if/else blocks
 		coefficient = it->coefficient();
 
 
-		if (coefficient < 0)
+		if (coefficient < 0)											//If coeff is negative, make it positive
 		{
 			coefficient = abs(coefficient);
-			if (it == term_list.begin()) out << "-";
+			if (it == term_list.begin()) out << "-";					//If we are on first term + is negative, print a negative, rather than minus
 		}
 
-		if (degree == 0)
+		if (degree == 0)												//If degree is 0, just print coeff
 			out << coefficient;
-		else if (degree == 1 && coefficient == 1)
+		else if (degree == 1 && coefficient == 1)						//If degree = 1 and coeff = 1, just print x
 			out << "x";
-		else if (degree == 1)
+		else if (degree == 1)											//If degree is 1, again, do not print exponent
 			out << coefficient << "x";
-		else if (coefficient == 1)
+		else if (coefficient == 1)										//If coefficient = 1, do not print coeff
 			out << "x^" << degree;
-		else
+		else															//Otherwise in general case, print Cx^d
 			out << coefficient << "x^" << degree;
 	}
 }
@@ -367,47 +342,47 @@ inline void Polynomial<NumberType>::insert_in_poly(Polynomial<NumberType>& p, co
 {
 	auto it = term_list.begin();
 
-	if (m.degree() == 0 && m.coefficient() == 0)
+	if (m.degree() == 0 && m.coefficient() == 0)						//If someone tries to insert 0x^0, don't
 		return;
 
-	if (it->degree() == 0 && it->coefficient() == 0)
+	if (it->degree() == 0 && it->coefficient() == 0)					//Check list for empty first element (typically in case of new Polynomial)
 	{
-		it = term_list.erase(it);
+		it = term_list.erase(it);										//If so, remove the term
 		number_of_terms--;
 	}
 
-	number_of_terms++;
+	number_of_terms++;													//Increment number of terms, since we are now adding something
 
-	if (it == term_list.end())
+	if (it == term_list.end())											//If adding to empty list, special logic so iterator doesn't over increment
 	{
 		term_list.push_back(m);
 		highest_degree = m.degree();
-		return;
+		return;															//Since term has been added, return
 	}
 	
-	it++;
+	it++;																//After above check, can increment iterator
 
-	if (m.degree() > gethighestdegree())
+	if (m.degree() > gethighestdegree())								//If we are trying to add new highest degree,
 	{
-		term_list.push_front(m);
+		term_list.push_front(m);										//Push to front, update highest_degree, return
 		highest_degree = m.degree();
 		return;
 	}
 
-	for (it; it != term_list.end(); it++)
+	for (it; it != term_list.end(); it++)								//If not highest term, iterate over list
 	{
-		if (m.degree() > it->degree())
+		if (m.degree() > it->degree())									//If we are greater degree than term we are currently looking at,
 		{
-			term_list.insert(it, m);
+			term_list.insert(it, m);									//Insert and return
 			return;
 		}
-		else if (m.degree() == it->degree())
+		else if (m.degree() == it->degree())							//Otherwise, if the two terms are equal in degree, just update the coeff
 		{
 			it->assign_coefficient(it->coefficient() + m.coefficient());
 			return;
 		}
-	}
-	term_list.push_back(m);
+	}																	//Finally, if we aren't greater than or equal to any term, 
+	term_list.push_back(m);												//Push to back, since Monomial has smallest degree in list
 }
 
 template<typename NumberType>
