@@ -1,4 +1,13 @@
-// P05CircularBufferDriver.cpp -- starter code
+/*
+*	Name: Ben Schiewe
+*	Course: CS318 FA2023
+*	Project: P05 - Circular Buffer
+*	File: P05CircularBufferDriver.cpp
+*
+*	Project Description:
+*
+*	Create a C++ project for a circular buffer
+*/
 
 /*  REQUIREMENTS NOTES:
 
@@ -7,6 +16,7 @@
     Use a capacity of 5
 
 */
+
 #include <iostream>
 #include <algorithm>
 #include <iterator>

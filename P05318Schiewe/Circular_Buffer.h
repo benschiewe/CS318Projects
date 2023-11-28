@@ -1,3 +1,14 @@
+/*
+*	Name: Ben Schiewe
+*	Course: CS318 FA2023
+*	Project: P05 - Circular Buffer
+*	File: Circular_Buffer.h
+*
+*	Project Description:
+*
+*	Create a C++ project for a circular buffer
+*/
+
 // Circular_Buffer.h -- starter code
 /*  REQUIREMENTS NOTES:
 

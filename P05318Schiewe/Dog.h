@@ -1,4 +1,14 @@
-// Dog.h -- slight modification to ostream operator overload
+/*
+*	Name: Ben Schiewe
+*	Course: CS318 FA2023
+*	Project: P05 - Circular Buffer
+*	File: Dog.h
+*
+*	Project Description:
+*
+*	Create a C++ project for a circular buffer
+*/
+
 #ifndef DOG_H
 #define DOG_H
 #include <iostream>
