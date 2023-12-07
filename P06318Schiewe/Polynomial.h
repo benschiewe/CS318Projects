@@ -182,7 +182,7 @@ inline const Polynomial<NumberType> Polynomial<NumberType>::operator+(const Poly
 template<typename NumberType>
 inline Polynomial<NumberType> Polynomial<NumberType>::operator-=(const Monomial<NumberType>& m)
 {
-	insert_in_poly(*this, Monomial(-m.coefficient(), -m.degree()));
+	insert_in_poly(*this, Monomial<NumberType>(-m.coefficient(), -m.degree()));
 	return *this;
 }
 
