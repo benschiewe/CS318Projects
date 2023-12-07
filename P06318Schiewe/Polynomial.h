@@ -299,7 +299,7 @@ inline void Polynomial<NumberType>::read(std::istream& in)
 template<typename NumberType>
 inline void Polynomial<NumberType>::print(std::ostream& out) const		//Absolutely disgusting, but it works
 {																		//Seriously, what the fuck
-	NumberType degree, coefficient = 1;
+	out << "\nNumber terms " << this->number_of_terms << "\n";
 
 	for (auto it = term_list.begin(); it != term_list.end(); it++)
 	{
@@ -314,8 +314,8 @@ inline void Polynomial<NumberType>::print(std::ostream& out) const		//Absolutely
 				out << " - ";
 		}
 
-		degree = it->degree();											//Local vars for if/else blocks
-		coefficient = it->coefficient();
+		NumberType degree = it->degree();											//Local vars for if/else blocks
+		NumberType coefficient = it->coefficient();
 
 
 		if (coefficient < 0)											//If coeff is negative, make it positive
@@ -335,6 +335,7 @@ inline void Polynomial<NumberType>::print(std::ostream& out) const		//Absolutely
 		else															//Otherwise in general case, print Cx^d
 			out << coefficient << "x^" << degree;
 	}
+	out << "\n";
 }
 
 template<typename NumberType>

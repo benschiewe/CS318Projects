@@ -49,7 +49,7 @@ int main() {
 	cout << p1;
 
 	p1 = poly(mono(-10, 7)) - poly(mono(-10, 7)) + poly(mono(-10, 7));
-	cout << "\nLINE 48 * p1 = poly(mono(-10, 7)) - poly(mono(-10,7)) + poly(mono(-10,7)) *: ";
+	cout << "\nLINE 48 * p1 = poly(mono(-10, 7)) - poly(mono(-10,7)) + poly(mono(-10,7)) *:";
 	cout << p1;
 
 	p1 *= Monomial<int>(2, 2);
