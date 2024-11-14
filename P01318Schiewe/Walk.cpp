@@ -76,7 +76,7 @@ double Walk::convertToRadians(double degree) const
     return degree * (M_PI / 180);
 }
 
-void Walk::walkAgain()
+void Walk::step()
 {
     int length = generateLength();
     double angle = convertToRadians(generateAngle());

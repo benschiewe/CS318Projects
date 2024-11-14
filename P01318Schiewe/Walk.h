@@ -19,7 +19,6 @@ You will end at the final point (xN,yN)."
 */
 
 #pragma once
-#include <iostream>
 
 #ifndef _WALK_H_
 #define _WALK_H_
@@ -41,8 +40,7 @@ public:
 	int generateAngle() const;
 	int generateLength() const;
 	double convertToRadians(double degree) const;
-	void walkAgain();
+	void step();
 };
 
 #endif
-

@@ -22,6 +22,7 @@ You will end at the final point (xN,yN)."
 #include <vector>
 #include <algorithm>
 #include <iomanip>
+#include <iostream>
 
 std::ostream& operator<<(std::ostream& os, const Walk& walk);
 
@@ -51,7 +52,7 @@ int main()
 		Walk curr;
 		for (int j = 0; j < pts; j++)
 		{
-			curr.walkAgain();
+			curr.step();
 			std::cout << "Walk/Step: " << i + 1 << "/" << j + 1 << ":  " << curr << "\n";
 		}
 		vec.push_back(curr);

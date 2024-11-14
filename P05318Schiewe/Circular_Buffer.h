@@ -88,9 +88,9 @@ public:
 	friend std::ostream& operator<<(std::ostream& os, CircularBuffer& buf) {
 		os << "Buffer Info: head: " << buf._head << ", tail: " << buf._tail <<
 			", current: " << buf._current << ", capacity: " << buf._capacity << ", size: " << buf._size << "\n";
-		os << " Container:";
+		os << "Container:";
 		for (T el : buf.c) {
-			os << " " << el;
+			os << el << " ";
 		}
 		return os;
 	}
